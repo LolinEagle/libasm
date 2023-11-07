@@ -11,15 +11,20 @@
 # **************************************************************************** #
 
 NAME = libasm.a
+SRCS = ft_strlen ft_strcpy ft_strcmp ft_write ft_read ft_strdup
 
 $(NAME):
 
 all:$(NAME)
 
-clean:fclean
+clean:
 	rm -f *.o
 
 fclean:clean
-	rm -f *.o
+	rm -f $(NAME)
 
 re:fclean all
+
+debug:
+	nasm -f elf main.s
+	ld -m elf_i386 main.o
