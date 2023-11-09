@@ -11,9 +11,12 @@
 # **************************************************************************** #
 
 NAME = libasm.a
-SRCS = ft_strlen ft_strcpy ft_strcmp ft_write ft_read ft_strdup
+SRCS = ft_strlen.s ft_strcpy.s ft_strcmp.s ft_write.s ft_read.s ft_strdup.s
+OBJS = $(SRCS:.s=.o)
 
 $(NAME):
+	nasm -f elf ft_strlen.s
+	ar -r $(NAME) ft_strlen.o
 
 all:$(NAME)
 
