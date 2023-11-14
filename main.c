@@ -14,9 +14,7 @@
 
 int	main(void)
 {
-	size_t	i;
-	
-	i = ft_strlen("123456789");
-	printf("%zu\n", i);
+	printf("%zu\n", ft_strlen(""));
+	printf("%zu\n", ft_strlen("123456789012345678901234567890123456789012"));
 	return (0);
 }

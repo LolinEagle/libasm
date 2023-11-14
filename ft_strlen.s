@@ -1,12 +1,12 @@
-strlen:
-	push	ebx
-	mov		ebx, eax
-nextchar:
-	cmp		byte [eax], 0
-	jz		finished
-	inc		eax
-	jmp		nextchar
-finished:
-	sub		eax, ebx
-	pop		ebx
+section .text
+global ft_strlen
+
+ft_strlen:
+	xor		rax, rax			; Set the value of RAX to 0
+.nextchar:
+	cmp		byte [rdi + rax], 0	; Check for null terminator
+	je		.return				; Jump if condition is met to return
+	inc		rax					; Incrementing rax by 1
+	jmp		.nextchar			; Jump to nextchar
+.return:
 	ret

@@ -11,27 +11,28 @@
 # **************************************************************************** #
 
 NAME	=	libasm.a
+EXEC	=	main.out
 SRCS	=	ft_strlen.s ft_strcpy.s ft_strcmp.s ft_write.s ft_read.s ft_strdup.s
 OBJS	=	$(SRCS:.s=.o)
-NASM	=	nasm
-ASMFLAG	=	-f elf64
-CC		=	cc
-CFLAG	=	-Wall -Wextra -Werror
+NASM	=	nasm -f elf64
+CC		=	cc -Wall -Wextra -Werror
 
 %.o : %.s
-	$(NASM) $(NASMFLAGS) $< -o $@
+	$(NASM) $< -o $@
 
-$(NAME):$(OBJ)
-	ar rcs $(NAME) $(OBJ)
+$(NAME):$(OBJS)
+	ar rcs $(NAME) $(OBJS)
 
 all:$(NAME)
-	$(CC) $(CFLAGS) main.c -L. -llibasm
-	./a.out
 
 clean:
-	rm -f *.o
+	rm -f $(OBJS)
 
 fclean:clean
-	rm -f $(NAME) ./a.out
+	rm -f $(NAME) $(EXEC)
 
 re:fclean all
+
+main:$(NAME)
+	$(CC) -o $(EXEC) main.c -L. -lasm
+	./$(EXEC)
