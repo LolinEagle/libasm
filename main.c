@@ -16,5 +16,6 @@ int	main(void)
 {
 	printf("%zu\n", ft_strlen(""));
 	printf("%zu\n", ft_strlen("123456789012345678901234567890123456789012"));
+	ft_write(1, "Bonjour\n", 8);
 	return (0);
 }

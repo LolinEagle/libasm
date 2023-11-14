@@ -35,4 +35,4 @@ re:fclean all
 
 main:$(NAME)
 	$(CC) -o $(EXEC) main.c -L. -lasm
-	./$(EXEC)
+	valgrind ./$(EXEC)
