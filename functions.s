@@ -1,3 +1,6 @@
+; **************************************************************************** ;
+;   String print                                                               ;
+; **************************************************************************** ;
 sprint:
 	push	edx
 	push	ecx
@@ -26,23 +29,29 @@ sprintLF:
 	pop		eax
 	ret
 
+; **************************************************************************** ;
+;   Quit                                                                       ;
+; **************************************************************************** ;
 quit:
 	mov		ebx, 0
 	mov		eax, 1
 	int		128
 	ret
 
+; **************************************************************************** ;
+;   Count to 10                                                                ;
+; **************************************************************************** ;
 iprint:
 	push	eax		; Number to print
 	push	ecx		; Iterators
 	push	edx		; Remainder
-	push	esi		; Divider
+	push	ebx		; Divider
 	mov		ecx, 0
 divideLoop:
 	inc		ecx
 	mov		edx, 0
-	mov		esi, 10
-	idiv	esi
+	mov		ebx, 10
+	idiv	ebx
 	add		edx, 48
 	push	edx		; push edx (string representation) onto the stack
 	cmp		eax, 0
@@ -54,7 +63,7 @@ printLoop:
 	pop		eax
 	cmp		ecx, 0
 	jnz		printLoop
-	pop		esi
+	pop		ebx
 	pop		edx
 	pop		ecx
 	pop		eax

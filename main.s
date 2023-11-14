@@ -11,6 +11,7 @@ msg2	db		"Hello, ", 0
 SECTION .text
 global  _start
 
+; Passing arguments
 ;_start:
 ;	pop		ecx
 ;nextArg:
@@ -23,6 +24,7 @@ global  _start
 ;noMoreArg:
 ;	call	quit
 
+; User input
 ;_start:
 ;	mov		eax, msg1
 ;	call	sprint
@@ -37,12 +39,13 @@ global  _start
 ;	call	sprint
 ;	call	quit
 
-_start:
-	mov		ebx, 0
-nextNumber:
-	inc		ebx
-	mov		eax, ebx
-	call	iprintLF
-	cmp		ebx, 10
-	jne		nextNumber
-	call	quit
+; Count to 10
+;_start:
+;	mov		ecx, 0
+;nextNumber:
+;	inc		ecx
+;	mov		eax, ecx
+;	call	iprintLF
+;	cmp		ecx, 10
+;	jne		nextNumber
+;	call	quit

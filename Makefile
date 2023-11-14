@@ -10,24 +10,28 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libasm.a
-SRCS = ft_strlen.s ft_strcpy.s ft_strcmp.s ft_write.s ft_read.s ft_strdup.s
-OBJS = $(SRCS:.s=.o)
+NAME	=	libasm.a
+SRCS	=	ft_strlen.s ft_strcpy.s ft_strcmp.s ft_write.s ft_read.s ft_strdup.s
+OBJS	=	$(SRCS:.s=.o)
+NASM	=	nasm
+ASMFLAG	=	-f elf64
+CC		=	cc
+CFLAG	=	-Wall -Wextra -Werror
 
-$(NAME):
-	nasm -f elf ft_strlen.s
-	ar -r $(NAME) ft_strlen.o
+%.o : %.s
+	$(NASM) $(NASMFLAGS) $< -o $@
+
+$(NAME):$(OBJ)
+	ar rcs $(NAME) $(OBJ)
 
 all:$(NAME)
+	$(CC) $(CFLAGS) main.c -L. -llibasm
+	./a.out
 
 clean:
 	rm -f *.o
 
 fclean:clean
-	rm -f $(NAME)
+	rm -f $(NAME) ./a.out
 
 re:fclean all
-
-debug:
-	nasm -f elf main.s
-	ld -m elf_i386 main.o
