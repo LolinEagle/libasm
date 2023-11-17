@@ -12,9 +12,9 @@ ft_strcmp:
 .equal:
 	inc		rdi				; Increment the pointers of s1
 	inc		rsi				; Increment the pointers of s2
-	cmp		al, 0			; Check if both characters are null-terminators
+	cmp		al, 0			; Check if both characters are null terminators
 	je		.done			; Jump if equal zero
-	jmp		.compare_loop	; If not null-terminators, continue the loop
+	jmp		.compare_loop	; If not null terminators, continue the loop
 .done:
 	sub		rax, rbx		; Calculate the result based on the comparison
 	ret

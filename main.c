@@ -50,16 +50,20 @@ void	test_strcpy(void)
 
 	printf("--------------------------- strcpy ---------------------------\n");
 	bzero(dest, 8);
-	ft_strcpy(dest, src1);
-	printf("%s\n", dest);
+	printf("%s\n", ft_strcpy(dest, src1));
 	bzero(dest, 8);
-	strcpy(dest, src2);
-	printf("%s\n", dest);
+	printf("%s\n", strcpy(dest, src2));
 }
 
 void	test_strdup(void)
 {
+	char	src[] = "Bonjour";
+	char	*dup;
+
 	printf("--------------------------- strdup ---------------------------\n");
+	dup = ft_strdup(src);
+	printf("%s\n", dup);
+	free(dup);
 }
 
 int	main(void)
