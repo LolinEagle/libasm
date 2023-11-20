@@ -27,7 +27,16 @@ void	test_read_and_ft_write(void)
 	fd = open("ft_read.s", O_RDONLY);
 	read(fd, buf, 7);
 	close(fd);
-	printf("[%s]=[%s]\n", ft_buf, buf);
+	printf("%s=%s\n", ft_buf, buf);
+	bzero(ft_buf, 8);
+	bzero(buf, 8);
+	fd = open("libasm.h", O_RDONLY);
+	ft_read(fd, ft_buf, 7);
+	close(fd);
+	fd = open("libasm.h", O_RDONLY);
+	read(fd, buf, 7);
+	close(fd);
+	printf("%s=%s\n", ft_buf, buf);
 	ft_write(1, "Bonjour\n", 8);
 	write(1, "Bonjour\n", 8);
 }
@@ -44,33 +53,56 @@ void	test_strcmp(void)
 
 void	test_strcpy(void)
 {
-	char	src1[] = "Bonjour";
-	char	src2[] = "Bonsoir";
+	char	*src1;
+	char	*src2;
 	char	dest[8];
 
 	printf("--------------------------- strcpy ---------------------------\n");
+	src1 = "Bonjour";
+	src2 = "Bonsoir";
 	bzero(dest, 8);
-	printf("%s\n", ft_strcpy(dest, src1));
+	printf("dest=%s\n", ft_strcpy(dest, src1));
 	bzero(dest, 8);
-	printf("%s\n", strcpy(dest, src2));
+	printf("dest=%s\n", strcpy(dest, src2));
+	src1 = "";
+	src2 = "";
+	bzero(dest, 8);
+	printf("dest=%s\n", ft_strcpy(dest, src1));
+	bzero(dest, 8);
+	printf("dest=%s\n", strcpy(dest, src2));
 }
 
 void	test_strdup(void)
 {
-	char	src[] = "Bonjour";
 	char	*dup;
 
 	printf("--------------------------- strdup ---------------------------\n");
-	dup = ft_strdup(src);
-	printf("%s\n", dup);
+	dup = ft_strdup("Bonjour");
+	printf("dup=%s\n", dup);
+	free(dup);
+	dup = strdup("Bonjour");
+	printf("dup=%s\n", dup);
+	free(dup);
+	dup = ft_strdup("");
+	printf("dup=%s\n", dup);
+	free(dup);
+	dup = strdup("");
+	printf("dup=%s\n", dup);
+	free(dup);
+	dup = ft_strdup("12345678901234567890123456789012345678901234567890123456");
+	printf("dup=%s\n", dup);
+	free(dup);
+	dup = strdup("12345678901234567890123456789012345678901234567890123456");
+	printf("dup=%s\n", dup);
 	free(dup);
 }
 
 int	main(void)
 {
 	printf("--------------------------- strlen ---------------------------\n");
-	printf("%zu=%zu\n", ft_strlen(""), strlen(""));
 	printf("%zu=%zu\n", ft_strlen("12345678901234"), strlen("12345678901234"));
+	printf("%zu=%zu\n", ft_strlen("1"), strlen("1"));
+	printf("%zu=%zu\n", ft_strlen(""), strlen(""));
 	test_read_and_ft_write();
 	test_strcmp();
 	test_strcpy();
